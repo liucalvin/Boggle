@@ -1,20 +1,30 @@
 package com.liucalvin.boggle.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.commit
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.liucalvin.boggle.R
+import com.liucalvin.boggle.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-//                add<GameFragment>(R.id.fragment_container_view)
+        val navController by lazy {
+            (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
+        }
+
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.game_menu_item -> navController.navigate(R.id.action_historyFragment_to_gameFragment)
+                R.id.history_menu_item -> navController.navigate(R.id.action_gameFragment_to_historyFragment)
             }
+            return@setOnNavigationItemSelectedListener true
         }
     }
 }
