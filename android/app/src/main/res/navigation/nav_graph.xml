@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.liucalvin.boggle.ui.GameFragment"
+        android:name="com.liucalvin.boggle.ui.gameplay.GameFragment"
         android:label="game_fragment"
         tools:layout="@layout/game_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.liucalvin.boggle.ui.HistoryFragment"
+        android:name="com.liucalvin.boggle.ui.history.HistoryFragment"
         android:label="history_fragment"
         tools:layout="@layout/history_fragment" >
         <action

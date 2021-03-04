@@ -1,4 +1,4 @@
-package com.liucalvin.boggle.ui
+package com.liucalvin.boggle.ui.history
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

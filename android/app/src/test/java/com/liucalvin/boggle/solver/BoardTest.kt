@@ -20,10 +20,10 @@ class BoardTest {
     fun setup() {
         subject = Board(
             arrayOf(
-                charArrayOf('A', 'B', 'C', 'D'),
-                charArrayOf('E', 'F', 'G', 'H'),
-                charArrayOf('I', 'J', 'K', 'L'),
-                charArrayOf('M', 'N', 'O', 'P')
+                arrayOf("A", "B", "C", "D"),
+                arrayOf("E", "F", "G", "H"),
+                arrayOf("I", "J", "K", "L"),
+                arrayOf("M", "N", "O", "P")
             )
         )
     }
@@ -75,10 +75,10 @@ class BoardTest {
 
         subject = Board(
             arrayOf(
-                charArrayOf('A', 'B', 'C', 'D'),
-                charArrayOf('E', 'F', 'G'),
-                charArrayOf('I', 'J', 'K', 'L', 'M'),
-                charArrayOf('N', 'O')
+                arrayOf("A", "B", "C", "D"),
+                arrayOf("E", "F", "G"),
+                arrayOf("H", "I", "J", "K", "L"),
+                arrayOf("M", "N")
             )
         )
     }
