@@ -1,12 +1,10 @@
 package com.liucalvin.boggle.ui.gameplay
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
-import com.liucalvin.boggle.R
+import androidx.fragment.app.Fragment
 import com.liucalvin.boggle.databinding.GameFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,13 +18,17 @@ class GameFragment : Fragment() {
         get() = _binding!!
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = GameFragmentBinding.inflate(inflater, container, false)
 
-        adapter = TilesAdapter()
+        adapter = TilesAdapter(TileTouchListener { id ->
+            gameViewModel.onTileTouched(id)
+        })
         binding.boggleBoard.adapter = adapter
-        val layoutManager = GridLayoutManager(activity, 4)
+        val layoutManager = BoardLayoutManager(requireActivity(), gameViewModel.boardSize.value)
         layoutManager.spanSizeLookup
         binding.boggleBoard.layoutManager = layoutManager
 
@@ -36,8 +38,7 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
+        adapter.submitList(gameViewModel.tilesList.value)
     }
 
     override fun onDestroyView() {

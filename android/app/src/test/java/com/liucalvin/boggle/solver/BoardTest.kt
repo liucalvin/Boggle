@@ -1,6 +1,8 @@
 package com.liucalvin.boggle.solver
 
-import org.junit.Assert.assertEquals
+import org.hamcrest.CoreMatchers
+import org.hamcrest.Matchers.*
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -82,4 +84,19 @@ class BoardTest {
             )
         )
     }
+
+    @Test
+    fun `verify letterAt gets random letters from input board`() {
+        subject = Board(arrayOf(
+            arrayOf("ABC", "DEF", "GHI"),
+            arrayOf("JKL", "MNO", "PQR"),
+            arrayOf("STU", "VWX", "YZ")
+        ))
+
+        assertThat(subject.letterAt(0,0), `is`(oneOf('A', 'B', 'C')))
+        assertThat(subject.letterAt(1,0), `is`(oneOf('J', 'K', 'L')))
+        assertThat(subject.letterAt(2,0), `is`(oneOf('S', 'T', 'U')))
+        assertThat(subject.letterAt(1,2), `is`(oneOf('P', 'Q', 'R')))
+    }
+
 }

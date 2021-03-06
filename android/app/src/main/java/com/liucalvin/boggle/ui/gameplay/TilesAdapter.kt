@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.liucalvin.boggle.databinding.ItemLetterBinding
+import com.liucalvin.boggle.databinding.ItemLetterBindingImpl
 
-class TilesAdapter : ListAdapter<Tile, TilesAdapter.ViewHolder>(TilesListDiffCallback()) {
+class TilesAdapter(private val touchListener: TileTouchListener) :
+    ListAdapter<Tile, TilesAdapter.ViewHolder>(TilesListDiffCallback()) {
 
     class ViewHolder private constructor(private val binding: ItemLetterBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -45,4 +47,8 @@ class TilesListDiffCallback : DiffUtil.ItemCallback<Tile>() {
 
 }
 
-data class Tile(val letter: Char) { }
+data class Tile(val letter: Char, val id: Int) {}
+
+class TileTouchListener(val touchListener: (id: Int) -> Unit) {
+    fun onTouch(id: Int) = touchListener(id)
+}

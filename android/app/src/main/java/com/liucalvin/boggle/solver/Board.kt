@@ -17,20 +17,29 @@ val default5x5 = arrayOf(
     arrayOf("FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU")
 )
 
-class Board(private val letters: Array<Array<String>> = default4x4) {
+class Board(letters: Array<Array<String>> = default4x4) {
 
     val rows = letters.size
     val cols = letters[0].size  // assume uniform arrays
 
-    private lateinit var randomizedLetters: Array<Array<Char>>
+    var randomizedLetters: Array<Array<Char>>
+        private set
 
     init {
         for (i in 0 until rows) {
             require(letters[i].size == cols) { "Array is not uniformly rectangular" }
         }
 
-        // randomize letters
+        randomizedLetters = Array(rows) { Array(cols) { ' ' } }
 
+        // randomize letters
+        for (i in 0 until rows) {
+            for (j in 0 until cols) {
+                letters[i][j].apply {
+                    randomizedLetters[i][j] = random()
+                }
+            }
+        }
     }
 
     fun letterAt(i: Int, j: Int): Char {
