@@ -3,7 +3,6 @@ package com.liucalvin.boggle.ui.gameplay
 import androidx.lifecycle.ViewModel
 import com.liucalvin.boggle.db.asTiles
 import com.liucalvin.boggle.solver.Board
-import com.liucalvin.boggle.solver.default5x5
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.math.sqrt
@@ -18,13 +17,21 @@ class GameViewModel : ViewModel() {
     val boardSize: StateFlow<Int>
         get() = _boardSize
 
+    private val _currentScore = MutableStateFlow(0)
+    val currentScore: StateFlow<Int>
+        get() = _boardSize
+
+    private val _correctWords = MutableStateFlow<MutableList<String>>(mutableListOf())
+    val correctWords: StateFlow<List<String>>
+        get() = _correctWords
+
     init {
         _tilesList.value = Board().randomizedLetters.asTiles()
         _boardSize.value = sqrt(_tilesList.value.size.toDouble()).toInt()
     }
 
     fun onTileTouched(id: Int) {
-        TODO("Not yet implemented")
+        _correctWords.value[0] = _correctWords.value[0] + "$id "
     }
 
 }

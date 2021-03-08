@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="tile"
+            type="com.liucalvin.boggle.ui.gameplay.Tile" />
+        <variable
+            name="touchListener"
+            type="com.liucalvin.boggle.ui.gameplay.TileTouchListener" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -16,6 +27,7 @@
             android:textSize="60sp"
             android:textStyle="bold"
             android:textColor="@color/light_text"
+            android:text="@{tile.letter}"
             tools:text="A"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +41,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-<!--        android:onTouch="@{() -> touchListener.onTouch(tile)}"-->
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> touchListener.onTouch(tile.id)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.liucalvin.boggle.databinding.GameFragmentBinding
+import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GameFragment : Fragment() {
@@ -39,6 +41,13 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter.submitList(gameViewModel.tilesList.value)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            gameViewModel.correctWords.collect {
+                binding.currentScore.text = it.toString()
+            }
+        }
+
     }
 
     override fun onDestroyView() {

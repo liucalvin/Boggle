@@ -15,7 +15,7 @@ class TilesAdapter(private val touchListener: TileTouchListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tile: Tile) {
-            binding.itemLetter.text = tile.letter.toString()
+//            binding.itemLetter.text = tile.letter.toString()
         }
 
         companion object {
