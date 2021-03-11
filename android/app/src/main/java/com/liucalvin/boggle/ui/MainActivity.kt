@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
             return@setOnNavigationItemSelectedListener true
         }
 
-        binding.bottomNavigationView.setOnNavigationItemReselectedListener {  }
+        binding.bottomNavigationView.setOnNavigationItemReselectedListener {
+            return@setOnNavigationItemReselectedListener
+        }
     }
 }
