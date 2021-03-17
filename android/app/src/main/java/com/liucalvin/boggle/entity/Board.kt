@@ -1,4 +1,6 @@
-package com.liucalvin.boggle.solver
+package com.liucalvin.boggle.entity
+
+import androidx.room.Entity
 
 // letter configurations taken from https://www.scribd.com/document/402786666/Boggle-docx
 
@@ -17,20 +19,18 @@ val default5x5 = arrayOf(
     arrayOf("FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU")
 )
 
-class Board(letters: Array<Array<String>> = default4x4) {
+class Board @JvmOverloads constructor(
+    letters: Array<Array<String>> = default4x4,
+    val randomizedLetters: Array<Array<Char>> = Array(letters.size) { Array(letters[0].size) { ' ' } }
+) {
 
     val rows = letters.size
     val cols = letters[0].size  // assume uniform arrays
-
-    var randomizedLetters: Array<Array<Char>>
-        private set
 
     init {
         for (i in 0 until rows) {
             require(letters[i].size == cols) { "Array is not uniformly rectangular" }
         }
-
-        randomizedLetters = Array(rows) { Array(cols) { ' ' } }
 
         // randomize letters
         for (i in 0 until rows) {

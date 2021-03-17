@@ -1,5 +1,7 @@
 package com.liucalvin.boggle.solver;
 
+import com.liucalvin.boggle.entity.Board;
+
 import java.util.HashSet;
 import java.util.Set;
 

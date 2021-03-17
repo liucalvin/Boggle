@@ -1,13 +1,14 @@
 package com.liucalvin.boggle.ui.gameplay
 
 import androidx.lifecycle.ViewModel
-import com.liucalvin.boggle.db.asTiles
-import com.liucalvin.boggle.solver.Board
+import com.liucalvin.boggle.entity.asTiles
+import com.liucalvin.boggle.entity.Board
+import com.liucalvin.boggle.repository.GameRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.math.sqrt
 
-class GameViewModel : ViewModel() {
+class GameViewModel(private val repository: GameRepository) : ViewModel() {
 
     private val _tilesList = MutableStateFlow<List<Tile>>(listOf())
     val tilesList: StateFlow<List<Tile>>

@@ -26,8 +26,10 @@ class GameFragment : Fragment() {
     ): View? {
         _binding = GameFragmentBinding.inflate(inflater, container, false)
 
-        adapter = TilesAdapter(TileTouchListener { id ->
-            gameViewModel.onTileTouched(id)
+        adapter = TilesAdapter(object : TileTouchListener {
+            override fun onTouch(tile: Tile) {
+                gameViewModel.onTileTouched(id)
+            }
         })
         binding.boggleBoard.adapter = adapter
         val layoutManager = BoardLayoutManager(requireActivity(), gameViewModel.boardSize.value)
