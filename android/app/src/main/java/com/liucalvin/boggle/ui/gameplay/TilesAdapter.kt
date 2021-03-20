@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.ListAdapter
 import com.liucalvin.boggle.ui.viewholders.AdapterItem
 import com.liucalvin.boggle.ui.viewholders.TileViewHolder
 
-class TilesAdapter(touchListener: TileTouchListener? = null) :
+class TilesAdapter(private val touchListener: TileTouchListener) :
     ListAdapter<Tile, TileViewHolder>(TilesListDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TileViewHolder {
-        TODO("Not yet implemented")
+        return TileViewHolder.from(parent, touchListener)
     }
 
     override fun onBindViewHolder(holder: TileViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(getItem(position))
     }
 
 }
@@ -34,6 +34,6 @@ data class Tile(val letter: Char, val id: Int) : AdapterItem("Tile")
 
 
 interface TileTouchListener {
-    fun onTouch(tile: Tile)
+    fun onTouch(tile: Tile): Boolean
 }
 

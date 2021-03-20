@@ -10,6 +10,7 @@ abstract class BaseViewHolder<T: AdapterItem, VB: ViewBinding>(
     bindingLayout: (LayoutInflater, ViewGroup?, Boolean) -> VB,
     val binding: VB = bindingLayout.invoke(LayoutInflater.from(parent.context), parent, false)
 ) : RecyclerView.ViewHolder(binding.root) {
+    abstract fun bind(item: T)
 }
 
 abstract class AdapterItem(val itemtype: String) {

@@ -29,6 +29,7 @@ class GameViewModel(private val repository: GameRepository) : ViewModel() {
     init {
         _tilesList.value = Board().randomizedLetters.asTiles()
         _boardSize.value = sqrt(_tilesList.value.size.toDouble()).toInt()
+        _correctWords.value = mutableListOf("")
     }
 
     fun onTileTouched(id: Int) {

@@ -2,4 +2,5 @@
     <string name="app_name">Boggle</string>
     <string name="play">Play</string>
     <string name="history">History</string>
+    <string name="tile_dimension_ratio">1:1</string>
 </resources>
