@@ -6,5 +6,6 @@ The solver uses a custom ternary search tree and depth first search to efficient
 The app is built with MVVM architecture, using:
 - Koin for dependency injection
 - Room for local database storage
-- Junit, Robolectric, and Mockito for testing
-- Stateflow and Kotlin coroutines for concurrency
+- JUnit, Robolectric, and Mockito for testing
+- State
+- StateFlow and Kotlin coroutines for concurrency
