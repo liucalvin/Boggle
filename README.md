@@ -7,5 +7,4 @@ The app is built with MVVM architecture, using:
 - Koin for dependency injection
 - Room for local database storage
 - JUnit, Robolectric, and Mockito for testing
-- State
 - StateFlow and Kotlin coroutines for concurrency
